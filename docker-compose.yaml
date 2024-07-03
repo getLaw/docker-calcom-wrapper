@@ -39,7 +39,7 @@ services:
     networks:
       - devstack
     ports:
-      - 3000:3500
+      - 3500:3500
     env_file: .env
     environment:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
@@ -54,7 +54,7 @@ services:
     networks:
       - devstack
     ports:
-      - 5555:5599
+      - 5599:5599
     env_file: .env
     environment:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
