@@ -5,8 +5,8 @@ volumes:
   database-data:
 
 networks:
-  stack:
-    name: stack
+  devstack:
+    name: devstack
     external: false
 
 services:
@@ -18,7 +18,7 @@ services:
       - database-data:/var/lib/postgresql/data/
     env_file: .env
     networks:
-      - stack
+      - devstack
 
   calcom:
     image: calcom.docker.scarf.sh/calcom/cal.com
@@ -34,10 +34,10 @@ services:
         CALENDSO_ENCRYPTION_KEY: ${CALENDSO_ENCRYPTION_KEY}
         DATABASE_URL: ${DATABASE_URL}
         DATABASE_DIRECT_URL: ${DATABASE_URL}
-      network: stack
+      network: devstack
     restart: always
     networks:
-      - stack
+      - devstack
     ports:
       - 3000:3000
     env_file: .env
@@ -52,7 +52,7 @@ services:
     image: calcom.docker.scarf.sh/calcom/cal.com
     restart: always
     networks:
-      - stack
+      - devstack
     ports:
       - 5555:5555
     env_file: .env
