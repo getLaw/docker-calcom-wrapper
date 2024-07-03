@@ -10,8 +10,8 @@ networks:
     external: false
 
 services:
-  database:
-    container_name: database
+  devdatabase:
+    container_name: devdatabase
     image: postgres
     restart: always
     volumes:
@@ -39,13 +39,13 @@ services:
     networks:
       - devstack
     ports:
-      - 3000:3000
+      - 3000:3500
     env_file: .env
     environment:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
       - DATABASE_DIRECT_URL=${DATABASE_URL}
     depends_on:
-      - database
+      - devdatabase
 
 # Optional use of Prisma Studio. In production, comment out or remove the section below to prevent unwanted access to your database.
   studio:
@@ -54,13 +54,13 @@ services:
     networks:
       - devstack
     ports:
-      - 5555:5555
+      - 5555:5599
     env_file: .env
     environment:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}/${POSTGRES_DB}
       - DATABASE_DIRECT_URL=${DATABASE_URL}
     depends_on:
-      - database
+      - devdatabase
     command:
       - npx
       - prisma
