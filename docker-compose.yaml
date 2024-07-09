@@ -2,8 +2,8 @@
 # Use postgres/example user/password credentials
 version: '3.8'
 
-#volumes:
-#  database-data:
+volumes:
+  database-data:
 
 networks:
   stack:
@@ -16,7 +16,7 @@ services:
     image: postgres
     restart: always
     volumes:
-      - database-data:/var/lib/postgresql/data/
+      - devdatabase-data:/var/lib/postgresql/data/
     env_file: .env
     networks:
       - stack
